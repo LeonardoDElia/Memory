@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Huntik Memory</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: gray;
+    }
+
+    .card {
+        width: 173px;
+        height: 239px;
+        aspect-ratio: 1/2;
+        background-color: red;
+        margin: 10px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: all 1s ease-in-out;
+    }
+
+    .dorso,
+    .faccia {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .dorso {
+        z-index: 10;
+        background-image: url(gennaro.webp);
+        background-size: cover;
+        background-position: center;
+
+        backface-visibility: hidden;
+    }
+
+    .faccia {
+        z-index: 1;
+        background-size: contain;
+        background-color: yellow;
+        transition: all 1s ease-in-out;
+    }
+
+    .selected {
+        transform: rotateY(180deg);
+    }
+
+    .correct {
+        transform: rotateY(180deg);
+    }
+
+    #title {
+        text-align: center;
+        font-weight: 400;
+        font-size: 50px;
+    }
+
+    #centerpage {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .carte {
+        display: grid;
+        column-gap: 90px;
+        grid-template-columns: auto auto auto auto;
+        row-gap: 10px;
+    }
+
+
+
+    .container {
+        width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #thaparte {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-transform: uppercase;
+        font-family: fantasy;
+        color: black;
+    }
+
+    #logo {
+        width: 200px;
+        height: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <section id="mainpage">
+        <div id="centerpage" class="container">
+            <div id="thaparte">
+                <img id="logo" src="huntik.png">
+                <h1 id="title">the memory game</h1>
+            </div>
+            <div class="carte">
+                
+                 <div class="card" data-titano="4">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Sophie.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+                <div class="card" data-titano="6">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Den.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+				</div>
+
+				   <div class="card" data-titano="2">
+                    <div class="dorso"></div>
+                    <div class="faccia"style="background-image: url(cherit.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+                <div class="card" data-titano="1">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(dante.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+
+                <div class="card" data-titano="2">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(cherit.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+
+                <div class="card" data-titano="5">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Lok.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+             <div class="card" data-titano="4">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Sophie.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+
+                <div class="card" data-titano="6">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Den.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+                  <div class="card" data-titano="3">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(zhalia.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+               
+               
+                <div class="card" data-titano="5">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(Lok.webp); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+                 <div class="card" data-titano="1">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(dante.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+                
+                <div class="card" data-titano="3">
+                    <div class="dorso"></div>
+                    <div class="faccia" style="background-image: url(zhalia.jpg); background-size: cover; background-position:  center; background-repeat: no-repeat;"></div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+        let card = document.querySelectorAll(".card")
+        for (let i = 0; i < card.length; i++) {
+            card[i].addEventListener("click", function(e) {
+                e.preventDefault()
+                if (!(card[i].classList.contains("correct"))) {
+                    e.currentTarget.classList.add("selected")
+
+                    let selectedcards = document.querySelectorAll(".card.selected")
+
+                    if (selectedcards.length === 2) {
+                        if (selectedcards[0].dataset.titano === selectedcards[1].dataset.titano) {
+                            for (let i = 0; i < selectedcards.length; i++) {
+                                selectedcards[i].classList.add("correct")
+                                selectedcards[i].classList.remove("selected")
+                            }
+
+
+                        } else {
+                            setTimeout(function() {
+                                for (let i = 0; i < selectedcards.length; i++) {
+                                    selectedcards[i].classList.remove("selected")
+                                }
+                            }, 1000)
+                        }
+                    }
+                }
+            })
+        }
+        </script>
+</body>
+
+</html>
